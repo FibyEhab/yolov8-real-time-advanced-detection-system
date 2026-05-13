@@ -168,7 +168,7 @@ cv2.putText(frame, f'Total objects: {object_count}',
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Low FPS
 - Use `yolov8n.pt` (nano)
@@ -227,8 +227,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 ## Author
-
-**Fiby Ehab** - AI Engineer
 
 **Fiby Ehab** - AI Engineer
 
