@@ -1,45 +1,99 @@
-# Real-Time Object Detection with YOLOv8s and Live Object Counter
+# YOLOv8s Advanced Real-Time Detection System
 
 [![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](https://python.org)
 [![YOLOv8s](https://img.shields.io/badge/YOLOv8s-00FFFF?style=flat&logo=yolo&logoColor=black)](https://github.com/ultralytics/ultralytics)
 [![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat&logo=opencv&logoColor=white)](https://opencv.org)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=flat)]()
 
 ---
 
 ## About
 
-Professional real-time object detection system using **YOLOv8s** with an integrated **live object counter**. Features dynamic random colors for each detected class, fullscreen HD display (1920×1080), and real-time object counting in each frame.
+Enterprise-grade real-time object detection system built with **YOLOv8s**. Features live object counter, dynamic class colors, fullscreen HD display (1920×1080), FPS monitoring, professional statistics, and production-ready error handling.
+
+**Perfect for:**
+- Real-time monitoring systems
+- Security surveillance
+- Traffic analysis
+- Crowd counting
+- Research and development
+- Educational purposes
 
 **Key Features:**
-- Real-time detection at 30-40 FPS
-- **Live object counter** - displays total objects in current frame
-- Dynamic random colors for each class (consistent across frames)
-- High resolution (1920×1080) fullscreen display
+- Real-time detection (30-40 FPS on CPU)
+- Live object counter with frame statistics
+- Dynamic random colors per class (consistent)
+- High-definition fullscreen display (1920×1080)
+- FPS monitoring and performance metrics
 - Confidence scores for each detection
-- YOLOv8s model (balanced speed/accuracy)
-- Frame statistics (FPS, average objects)
+- Professional UI with styled text
+- Error handling and graceful shutdown
+- Structured code with functions
+- Comprehensive logging
 
 ---
 
-## What's Special?
+## Quick Start
 
-### Object Counter Feature
-- **Real-time count** of all detected objects in each frame
-- **Yellow text display** in top-left corner
-- **Updates every frame** automatically
-- **Easy to track** object density in scene
+### Prerequisites
+```bash
+Python 3.8+
+Webcam
+4GB+ RAM
+```
 
-### Dynamic Colors
-Each object class gets a unique random color:
-- First detection → color assigned
-- Subsequent detections → same color used
-- Makes tracking specific categories easier
+### Installation
+```bash
+git clone https://github.com/username/yolov8s-advanced-detection-system.git
+cd yolov8s-advanced-detection-system
+pip install -r requirements.txt
+```
 
-### Fullscreen HD Display
-- 1920×1080 resolution for immersive experience
+### Run
+```bash
+python main.py
+```
+
+### Exit
+Press **Q** to quit gracefully
+
+---
+
+## Features Explained
+
+### 1. Real-Time Object Counter
+```python
+Displays total objects detected in current frame
+Located at top-left in yellow text
+Updates every frame automatically
+```
+
+### 2. Dynamic Class Colors
+Each detected class gets a unique random color:
+- First detection → random color assigned
+- All subsequent detections → same color
+- Makes tracking easier visually
+
+### 3. FPS Monitoring
+```python
+Calculates frames per second in real-time
+Displayed on top-left of frame
+Helps monitor performance
+```
+
+### 4. Frame Statistics
+Shows:
+- Object count per frame
+- Frame number
+- FPS
+- Final statistics on exit
+
+### 5. Professional Display
+- 1920×1080 HD resolution
 - Automatic fullscreen mode
-- Professional presentation quality
+- Text with background for readability
+- Color-coded information
 
 ---
 
@@ -51,119 +105,57 @@ Each object class gets a unique random color:
 | **Computer Vision** | OpenCV 4.8+ |
 | **Language** | Python 3.8+ |
 | **Framework** | PyTorch 2.0+ |
+| **Performance** | 30-40 FPS (CPU) |
 
 ---
 
-## Installation
-
-### Prerequisites
-- Python 3.8+
-- Webcam
-- 4GB+ RAM
-
-### Quick Setup
-```bash
-git clone https://github.com/username/yolov8-realtime-object-counter.git
-cd yolov8-realtime-object-counter
-pip install -r requirements.txt
-```
-
----
-
-## Usage
-
-### Run the Script
-```bash
-python main.py
-```
-
-### What You'll See
-1. **Fullscreen display** (1920×1080)
-2. **Bounding boxes** around detected objects
-3. **Class labels** with confidence scores
-4. **Unique colors** per class (assigned randomly)
-5. **Live counter** in yellow (top-left corner)
-6. **Statistics** in console output
-
-### Controls
-- **Q key** - Quit program
-
----
-
-## Key Features
-
-### 1. Object Counter
-```python
-object_count = 0
-for r in results:
-    boxes = r.boxes
-    object_count += len(boxes)
-
-cv2.putText(frame, f'Total objects: {object_count}', (30, 50), ...)
-```
-
-### 2. Dynamic Colors
-```python
-if cls not in class_colors:
-    class_colors[cls] = [random.randint(0, 255) for _ in range(3)]
-color = class_colors[cls]
-```
-
-### 3. Fullscreen Mode
-```python
-cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
-```
-
-### 4. High Resolution
-```python
-cap.set(3, 1920)  # Width
-cap.set(4, 1080)  # Height
-```
-
----
-
-## Performance
+## Performance Metrics
 
 | Metric | Value |
 |--------|-------|
 | **Model** | YOLOv8s |
 | **FPS** | 30-40 (CPU) / 60+ (GPU) |
-| **Resolution** | 1920×1080 |
-| **Confidence** | 0.5 |
-| **Classes** | 80 (COCO) |
+| **Resolution** | 1920×1080 HD |
+| **Confidence Threshold** | 0.5 |
+| **Detectable Classes** | 80 (COCO) |
+| **Model Size** | 42MB |
+| **Memory Usage** | ~1.5GB |
 
 ---
 
 ## Customization
 
-### Adjust Confidence
-```python
-results = model.predict(frame, conf=0.7)
-```
-
 ### Change Resolution
 ```python
-cap.set(3, 1280)
-cap.set(4, 720)
+# In main.py, modify initialize_camera()
+cap = initialize_camera(1280, 720)  # Lower resolution = faster
+```
+
+### Adjust Confidence Threshold
+```python
+results = model.predict(frame, stream=True, verbose=False, conf=0.7)
+```
+
+### Use Different Model
+```python
+# YOLOv8 variants:
+model = YOLO("yolov8n.pt")  # Nano - Fastest
+model = YOLO("yolov8s.pt")  # Small - Balanced (current)
+model = YOLO("yolov8m.pt")  # Medium
+model = YOLO("yolov8l.pt")  # Large
+model = YOLO("yolov8x.pt")  # Extra Large - Accurate
 ```
 
 ### Disable Fullscreen
 ```python
-# Comment out:
+# Comment out in setup_window():
 # cv2.setWindowProperty(...)
 ```
 
-### Different Model
+### Change Colors
 ```python
-model = YOLO("yolov8n.pt")  # Faster
-model = YOLO("yolov8m.pt")  # Balanced
-```
-
-### Counter Position
-```python
-cv2.putText(frame, f'Total objects: {object_count}', 
-           (50, 100),  # x, y
-           cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 255), 3)
+# In draw_statistics():
+cv2.putText(frame, ..., (200, 0, 200), ...)  # Change BGR color
 ```
 
 ---
@@ -171,58 +163,107 @@ cv2.putText(frame, f'Total objects: {object_count}',
 ## Troubleshooting
 
 ### Low FPS
-- Use `yolov8n.pt` (nano)
-- Reduce resolution
-- Increase confidence threshold
+```bash
+1. Use smaller model: yolov8n.pt
+2. Reduce resolution: 1280x720
+3. Increase conf threshold: 0.6 or 0.7
+4. Close other applications
+```
 
-### Webcam Issues
+### Webcam Not Found
 ```bash
 python -c "import cv2; print(cv2.VideoCapture(0).isOpened())"
 ```
 
-### Memory Issues
+### CUDA Memory Error
 ```bash
-pip install --upgrade torch torchvision
+# Use CPU or smaller model
+model = YOLO("yolov8n.pt")
+```
+
+### High CPU Usage
+```bash
+1. Skip frames: process every 2nd frame
+2. Reduce resolution
+3. Use GPU acceleration
 ```
 
 ---
 
-## Resources
+## Learning Resources
 
-- [YOLOv8 Docs](https://docs.ultralytics.com/)
-- [OpenCV Tutorials](https://docs.opencv.org/)
-- [YOLO Paper](https://arxiv.org/abs/2004.10934)
-- [COCO Dataset](https://cocodataset.org/)
+- **[YOLOv8 Official Documentation](https://docs.ultralytics.com/)** - Complete guide
+- **[OpenCV Tutorials](https://docs.opencv.org/)** - Computer vision basics
+- **[YOLO Research Paper](https://arxiv.org/abs/2004.10934)** - Technical details
+- **[COCO Dataset](https://cocodataset.org/)** - 80 detectable classes
+- **[PyTorch Documentation](https://pytorch.org/)** - Deep learning framework
 
 ---
 
-## Next Steps
+## 📁 Project Structure
+yolov8s-advanced-detection-system/
+├── main.py                 # Main detection script
+├── requirements.txt        # Python dependencies
+├── README.md              # This file
+├── LICENSE                # MIT License
+├── .gitignore             # Git ignore rules
+└── images/
+└── demo.png           # Demo screenshot (optional)
 
-- Add class filtering (count only specific classes)
-- Add history graph of object counts
-- Add recording functionality
-- Add statistics dashboard
-- Add export to CSV
+---
+
+## Advanced Usage
+
+### Process Video File
+```python
+# In main.py, modify initialize_camera():
+cap = cv2.VideoCapture("video.mp4")
+```
+
+### Save Output Video
+```python
+# Add to main.py:
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+out = cv2.VideoWriter('output.mp4', fourcc, 30.0, (1920, 1080))
+out.write(frame)  # In main loop
+out.release()  # At end
+```
+
+### Add Class Filtering
+```python
+# Only detect specific classes
+allowed_classes = [0, 2, 5]  # Person, Car, Dog
+if cls not in allowed_classes:
+    continue
+```
+
+### Add Frame Skipping (Faster)
+```python
+frame_count = 0
+skip_frames = 2
+if frame_count % skip_frames == 0:
+    results = model.predict(...)
+```
 
 ---
 
 ## Contributing
 
-Got ideas for improvements? I'd love to collaborate!
+Found a bug? Have suggestions?
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create feature branch: `git checkout -b feature/improvement`
+3. Commit changes: `git commit -m 'Add improvement'`
+4. Push to branch: `git push origin feature/improvement`
+5. Open Pull Request
 
 ---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - See [LICENSE](LICENSE) file for details
 
-**YOLOv8 Model:** Licensed under the AGPL-3.0 License by Ultralytics
+**YOLOv8:** Licensed under AGPL-3.0 by Ultralytics
 
 ---
 
@@ -238,14 +279,33 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## Acknowledgments
+## Support
 
-- [Ultralytics](https://github.com/ultralytics) for YOLOv8
-- [OpenCV](https://opencv.org/) for computer vision tools
-- [COCO Dataset](https://cocodataset.org/) for pre-trained weights
+- **Issues:** Open GitHub issues for bugs
+- **Questions:** Contact via email or LinkedIn
+- **Discussions:** Use GitHub discussions
 
 ---
 
-## ⭐ If this project helped you, please star it!
+## ⭐ Show Your Support
 
-Made with ❤️ for the AI community
+If this project helped you:
+- ⭐ **Star** this repository
+- **Fork** for your own use
+- **Share** with others
+- **Provide feedback**
+
+Every star motivates me to create more projects! 
+
+---
+
+## 🔗 Related Projects
+
+- [Real-Time YOLO Color Detection](https://github.com/username/real-time-yolo-color-detection)
+- [YOLOv8 Object Counter](https://github.com/username/yolov8-realtime-object-counter)
+
+---
+
+**Made with ❤️ for the AI Community**
+
+Last updated: January 2025 | Version: 1.0
